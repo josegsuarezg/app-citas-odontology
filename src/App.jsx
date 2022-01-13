@@ -8,11 +8,11 @@ function App() {
   const [paciente, setPaciente] = useState({});
   
   useEffect(() => {
-    const obtenerLocEst = () => {
-      pacientesLocEst = JSON.parse(localStorage.getItem('pacientes')) ?? [];
-      setPacientes(pacientesLocEst);
-    }
-    obtenerLocEst();
+    const obtenerLE = () => {
+      const pacientesLE = JSON.parse(localStorage.getItem('pacientes')) ?? [];
+      setPacientes(pacientesLE);
+    };
+    obtenerLE();
   }, []);
   
   useEffect(() => {
