@@ -3,9 +3,10 @@ import Error from "./Error";
 
 const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
   const [nombre, setNombre] = useState('');
-  const [propietario, setPropietario] = useState('');
+  const [apellido, setApellido] = useState('');
   const [email, setEmail] = useState('');
-  const [alta, setAlta] = useState('');
+  const [fecha, setFecha] = useState('');
+  const [hora, setHora] = useState('');
   const [sintomas, setSintomas] = useState('');
 
   const [error, setError] = useState(false);
@@ -13,9 +14,10 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
   useEffect(() => {
     if(Object.keys(paciente).length > 0){
       setNombre(paciente.nombre);
-      setPropietario(paciente.propietario);
+      setApellido(paciente.apellido);
       setEmail(paciente.email);
-      setAlta(paciente.alta);
+      setFecha(paciente.fecha);
+      setHora(paciente.hora);
       setSintomas(paciente.sintomas);
     };
     
@@ -33,7 +35,7 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
     e.preventDefault();
 
     //Validando el Formulario
-    if ([nombre, propietario, email, alta, sintomas].includes('')) {
+    if ([nombre, apellido, email, fecha, sintomas].includes('')) {
       setError(true);
       return;
     }
@@ -42,9 +44,10 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
     //Creando Objeto Paciente
     const objetoPaciente = {
       nombre,
-      propietario,
+      apellido,
       email,
-      alta,
+      fecha,
+      hora,
       sintomas,
     };
     
@@ -65,9 +68,10 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
     
     //Reiniciar el Formulario
     setNombre('');
-    setPropietario('');
+    setApellido('');
     setEmail('');
-    setAlta('');
+    setFecha('');
+    setHora('');
     setSintomas('');
     
   };
@@ -90,16 +94,16 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
         {error && (<Error mensaje="Todos los Campos son Obligatorios"/>)}
         <div className="mb-4">
           <label
-            htmlFor="mascota"
+            htmlFor="nombre"
             className="block text-gray-700 font-bold uppercase"
           >
-            Nombre Mascota
+            Nombre
           </label>
           <input
-            id="mascota"
+            id="nombre"
             className="w-full border-2 p-2 rounded-md mt-2 placeholder-gray-400"
             type="text"
-            placeholder="Nombre de la Mascota"
+            placeholder="Nombre"
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
           />
@@ -107,18 +111,18 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
 
         <div className="mb-4">
           <label
-            htmlFor="propietario"
+            htmlFor="apellido"
             className="block text-gray-700 font-bold uppercase"
           >
-            Nombre Propietario
+            Apellido
           </label>
           <input
-            id="propietario"
+            id="apellido"
             className="w-full border-2 p-2 rounded-md mt-2 placeholder-gray-400"
             type="text"
-            placeholder="Nombre del Propietario"
-            value={propietario}
-            onChange={(e) => setPropietario(e.target.value)}
+            placeholder="Apellido"
+            value={apellido}
+            onChange={(e) => setApellido(e.target.value)}
           />
         </div>
 
@@ -127,7 +131,7 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
             htmlFor="email"
             className="block text-gray-700 font-bold uppercase"
           >
-            E-mail de Contacto del Propietario
+            E-mail de Contacto del Paciente
           </label>
           <input
             id="email"
@@ -141,17 +145,33 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
 
         <div className="mb-4">
           <label
-            htmlFor="alta"
+            htmlFor="fecha"
             className="block text-gray-700 font-bold uppercase"
           >
-            Fecha del Alta de la Mascota
+            Fecha de la Cita
           </label>
           <input
-            id="alta"
+            id="fecha"
             className="w-full border-2 p-2 rounded-md mt-2 placeholder-gray-400"
             type="date"
-            value={alta}
-            onChange={(e) => setAlta(e.target.value)}
+            value={fecha}
+            onChange={(e) => setFecha(e.target.value)}
+          />
+        </div>
+        
+        <div className="mb-4">
+          <label
+            htmlFor="hora"
+            className="block text-gray-700 font-bold uppercase"
+          >
+            Hora de la Cita
+          </label>
+          <input
+            id="hora"
+            className="w-full border-2 p-2 rounded-md mt-2 placeholder-gray-400"
+            type="time"
+            value={hora}
+            onChange={(e) => setHora(e.target.value)}
           />
         </div>
 

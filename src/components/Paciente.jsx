@@ -1,7 +1,7 @@
 
 const Paciente = ({ paciente, setPaciente, eliminarPaciente }) => {
   
-  const { nombre, propietario, email, alta, sintomas, id } = paciente;
+  const { nombre, apellido, email, fecha, hora, sintomas, id } = paciente;
   
   
   //Confirmación para Eliminar Registro
@@ -20,8 +20,8 @@ const Paciente = ({ paciente, setPaciente, eliminarPaciente }) => {
       </p>
 
       <p className="font-bold mb-3 text-gray-700 upercase">
-        Propietario: {''}
-        <span className="font-normal normal-case">{propietario}</span>
+        Apellido: {''}
+        <span className="font-normal normal-case">{apellido}</span>
       </p>
 
       <p className="font-bold mb-3 text-gray-700 upercase">
@@ -30,8 +30,13 @@ const Paciente = ({ paciente, setPaciente, eliminarPaciente }) => {
       </p>
 
       <p className="font-bold mb-3 text-gray-700 upercase">
-        Fecha Alta: {''}
-        <span className="font-normal normal-case"> {alta} </span>
+        Fecha: {''}
+        <span className="font-normal normal-case"> {fecha} </span>
+      </p>
+      
+      <p className="font-bold mb-3 text-gray-700 upercase">
+        Hora: {''}
+        <span className="font-normal normal-case"> {hora} </span>
       </p>
 
       <p className="font-bold mb-3 text-gray-700 upercase">
