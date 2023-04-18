@@ -4,10 +4,11 @@ import Error from "./Error";
 const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
-  const [email, setEmail] = useState('');
+  const [telefono, setTelefono] = useState('');
   const [fecha, setFecha] = useState('');
   const [hora, setHora] = useState('');
   const [sintomas, setSintomas] = useState('');
+  const [diagnostico, setDiagnostico] = useState('');
 
   const [error, setError] = useState(false);
   
@@ -15,10 +16,11 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
     if(Object.keys(paciente).length > 0){
       setNombre(paciente.nombre);
       setApellido(paciente.apellido);
-      setEmail(paciente.email);
+      setTelefono(paciente.telefono);
       setFecha(paciente.fecha);
       setHora(paciente.hora);
       setSintomas(paciente.sintomas);
+      setDiagnostico(paciente.diagnostico);
     };
     
   }, [paciente])
@@ -35,7 +37,7 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
     e.preventDefault();
 
     //Validando el Formulario
-    if ([nombre, apellido, email, fecha, sintomas].includes('')) {
+    if ([nombre, apellido, telefono, fecha, sintomas, diagnostico].includes('')) {
       setError(true);
       return;
     }
@@ -49,6 +51,7 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
       fecha,
       hora,
       sintomas,
+      diagnostico
     };
     
     //Logica de Editar Registro
@@ -73,6 +76,7 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
     setFecha('');
     setHora('');
     setSintomas('');
+    setDiagnostico('');
     
   };
   
@@ -131,14 +135,14 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
             htmlFor="email"
             className="block text-gray-700 font-bold uppercase"
           >
-            E-mail de Contacto del Paciente
+            Teléfono de Contacto del Paciente
           </label>
           <input
-            id="email"
+            id="telefono"
             className="w-full border-2 p-2 rounded-md mt-2 placeholder-gray-400"
-            type="email"
+            type="telefono"
             placeholder="Email de contacto"
-            value={email}
+            value={telefono}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
@@ -188,6 +192,22 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
             placeholder="Sintomas"
             value={sintomas}
             onChange={(e) => setSintomas(e.target.value)}
+          />
+        </div>
+        
+        <div className="mb-4">
+          <label
+            htmlFor="diagnostico"
+            className="block text-gray-700 font-bold uppercase"
+          >
+            Diagnostico
+          </label>
+          <textarea
+            id="diagnostico"
+            className="w-full border-2 p-2 rounded-md mt-2 placeholder-gray-400"
+            placeholder="diagnostico"
+            value={diagnostico}
+            onChange={(e) => setDiagnostico(e.target.value)}
           />
         </div>
 
